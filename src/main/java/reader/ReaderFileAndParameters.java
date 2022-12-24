@@ -32,11 +32,6 @@ public class ReaderFileAndParameters implements Reader {
                 products.put(id, totalQuantity);
             }
         }
-        for (Map.Entry<Integer, Integer> entry : products.entrySet()) {
-            if (entry.getKey() > 10) {
-                throw new ProductNotFoundException(entry.getKey());
-            }
-        }
         return products;
     }
 

@@ -1,6 +1,7 @@
 package main.java.service;
 
 import main.java.entity.Basket;
+import main.java.exception.ProductNotFoundException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +24,7 @@ public class CheckResult implements FormationOfCheck {
         neededIds.forEach(id -> result.put(id, list.stream()
                                 .filter(lis -> id.equals(lis.getId()))
                                 .findFirst()
-                                .orElseThrow(() -> new RuntimeException("Products with id = " + id + " not found"))
+                                .orElseThrow(() -> new ProductNotFoundException(id))
                 ));
         return result;
     }
