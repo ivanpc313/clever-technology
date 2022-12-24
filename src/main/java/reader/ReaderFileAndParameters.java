@@ -1,5 +1,7 @@
-package by.clever_technology;
+package main.java.reader;
 
+import main.java.entity.Basket;
+import main.java.exception.ProductNotFoundException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -30,6 +32,11 @@ public class ReaderFileAndParameters implements Reader {
                 products.put(id, totalQuantity);
             }
         }
+        for (Map.Entry<Integer, Integer> entry : products.entrySet()) {
+            if (entry.getKey() > 10) {
+                throw new ProductNotFoundException(entry.getKey());
+            }
+        }
         return products;
     }
 
@@ -55,7 +62,7 @@ public class ReaderFileAndParameters implements Reader {
                             pr.setPriceQuantity(pr.discountPrice());
                             totalPrice = totalPrice + pr.getPriceQuantity();
                             pr.setTotalPrice(totalPrice);
-                        }else{
+                        } else {
                             totalPrice = totalPrice + pr.getPriceQuantity();
                             pr.setTotalPrice(totalPrice);
                         }

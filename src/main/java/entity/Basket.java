@@ -1,4 +1,4 @@
-package by.clever_technology;
+package main.java.entity;
 
 public class Basket {
 
