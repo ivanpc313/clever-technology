@@ -8,6 +8,7 @@ public class Basket {
     private double priceQuantity;
     private double totalPrice;
     private int quantity;
+    private String isSale;
 
     private final String raw;
 
@@ -47,12 +48,24 @@ public class Basket {
         this.priceProduct = priceProduct;
     }
 
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getIsSale() {
+        return isSale;
+    }
+
+    public void setSale(String sale) {
+        isSale = sale;
     }
 
     public double discountPrice() {
@@ -75,10 +88,14 @@ public class Basket {
         return Integer.parseInt(parts()[2]);
     }
 
+    public String is_on_sale() {
+        return parts()[3];
+    }
+
     @Override
     public String toString() {
         return "\n" + quantity + "   " + nameProduct + "          "
-                + priceProduct + "$        " + priceQuantity + "$   " + totalPrice + "$\n";
+                + priceProduct + "$        " + priceQuantity + "$   " + "\n";
 
     }
 

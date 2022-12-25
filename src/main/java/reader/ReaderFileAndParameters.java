@@ -1,7 +1,9 @@
 package main.java.reader;
 
 import main.java.entity.Basket;
+import main.java.exception.CardNotFoundException;
 import main.java.exception.ProductNotFoundException;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,20 +18,23 @@ public class ReaderFileAndParameters implements Reader {
     public Map<Integer, Integer> readingParameters(String[] args) {
 
         Map<Integer, Integer> products = new HashMap<>();
-        Integer cardNumber = null;
         Integer id;
         Integer quantity;
         int totalQuantity;
         for (String arg : args) {
             String[] parts = arg.split("-");
             if (parts[0].equals("card")) {
-                cardNumber = Integer.valueOf(parts[1]);
             } else {
                 id = Integer.valueOf(parts[0]);
                 quantity = Integer.valueOf(parts[1]);
                 Integer subtotal = products.getOrDefault(id, 0);
                 totalQuantity = subtotal + quantity;
                 products.put(id, totalQuantity);
+            }
+        }
+        for (Map.Entry<Integer, Integer> entry : products.entrySet()) {
+            if (entry.getKey() > 10) {
+                throw new ProductNotFoundException(entry.getKey());
             }
         }
         return products;
@@ -49,11 +54,12 @@ public class ReaderFileAndParameters implements Reader {
                 pr.setId(pr.itemId());
                 pr.setNameProduct(pr.nameOfProducts());
                 pr.setPriceProduct(pr.priceProducts());
+                pr.setSale(pr.is_on_sale());
                 for (Map.Entry<Integer, Integer> entry : products.entrySet()) {
                     if (pr.getId() == entry.getKey()) {
                         pr.setPriceQuantity(pr.getPriceProduct(), entry.getValue());
                         pr.setQuantity(entry.getValue());
-                        if (entry.getValue() >= 5) {
+                        if (entry.getValue() >= 5 && pr.getIsSale().equals("true")) {
                             pr.setPriceQuantity(pr.discountPrice());
                             totalPrice = totalPrice + pr.getPriceQuantity();
                             pr.setTotalPrice(totalPrice);

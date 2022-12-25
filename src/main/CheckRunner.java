@@ -19,10 +19,10 @@ public class CheckRunner {
 
         CheckResult result = new CheckResult();
         Map<Integer, Basket> myBasket = result.resultMap(paramsFromArg, allProductsFromFile, args);
-        result.discountFromCard(args, allDiscountCards, myBasket);
+        double totalPrice = result.discountFromCard(args, allDiscountCards, myBasket);
 
         PrintCheck printCheck = new PrintCheck();
-        printCheck.print(myBasket, parameters.cardNumber(args));
+        printCheck.print(myBasket, parameters.cardNumber(args), totalPrice);
     }
 }
 
