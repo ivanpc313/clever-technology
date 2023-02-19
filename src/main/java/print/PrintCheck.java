@@ -1,7 +1,6 @@
-package main.java.print;
+package print;
 
 import main.java.entity.Basket;
-import main.java.service.CheckResult;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -12,7 +11,7 @@ public class PrintCheck {
 
     public void print(Map<Integer, Basket> map, String cardNumber, double totalPrice) throws IOException {
 
-        try (BufferedWriter fileWriter = new BufferedWriter(new FileWriter("src/resources/check.txt", true))) {
+        try (BufferedWriter fileWriter = new BufferedWriter(new FileWriter("src/main/resources/check.txt", true))) {
 
             fileWriter.append("QTY  " + "DESCRIPTION  " + "  PRICE  " + "    COST  ");
             fileWriter.newLine();

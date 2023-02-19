@@ -1,9 +1,9 @@
-package main;
-
 import main.java.entity.Basket;
-import main.java.print.PrintCheck;
-import main.java.reader.ReaderFileAndParameters;
-import main.java.service.CheckResult;
+
+
+import print.PrintCheck;
+import reader.ReaderFileAndParameters;
+import service.CheckResult;
 
 import java.io.IOException;
 import java.util.*;

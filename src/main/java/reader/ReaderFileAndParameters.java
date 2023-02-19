@@ -1,8 +1,8 @@
-package main.java.reader;
+package reader;
 
+import exception.ProductNotFoundException;
 import main.java.entity.Basket;
-import main.java.exception.CardNotFoundException;
-import main.java.exception.ProductNotFoundException;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -45,7 +45,7 @@ public class ReaderFileAndParameters implements Reader {
         List<Basket> lines = new ArrayList<>();
         double totalPrice = 0.0;
         Map<Integer, Integer> products = readingParameters(args);
-        try (var reader = new BufferedReader(new FileReader("src/resources/products"))) {
+        try (var reader = new BufferedReader(new FileReader("src/main/resources/products"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 lines.add(new Basket(line));
@@ -79,7 +79,7 @@ public class ReaderFileAndParameters implements Reader {
     @Override
     public List<String> discountReader() {
         List<String> lines = new ArrayList<>();
-        try (var reader = new BufferedReader(new FileReader("src/resources/discountCards"))) {
+        try (var reader = new BufferedReader(new FileReader("src/main/resources/discountCards"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 lines.add(line);

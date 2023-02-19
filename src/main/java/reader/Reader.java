@@ -1,4 +1,4 @@
-package main.java.reader;
+package reader;
 
 import main.java.entity.Basket;
 
